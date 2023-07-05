@@ -1,6 +1,6 @@
 import { Node, Edge } from "reactflow";
 
-import { ChatCompletionResponseMessage } from "openai-streams";
+// import { ChatCompletionResponseMessage } from "openai-streams";
 
 export type FluxNodeData = {
   label: string;
@@ -32,7 +32,7 @@ export enum ReactFlowNodeTypes {
 // The stream response is weird and has a delta instead of message field.
 export interface CreateChatCompletionStreamResponseChoicesInner {
   index?: number;
-  delta?: ChatCompletionResponseMessage;
+  delta?: any;
   finish_reason?: string;
 }
 

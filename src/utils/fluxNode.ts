@@ -376,7 +376,8 @@ export function displayNameFromFluxNodeType(
     case FluxNodeType.User:
       return "User";
     case FluxNodeType.GPT:
-      return isGPT4 === undefined ? "GPT" : isGPT4 ? "GPT-4" : "GPT-3.5";
+      //Prompter title
+      return isGPT4 === undefined ? "LLM" : isGPT4 ? "GPT-4" : "GPT-3.5";
     case FluxNodeType.TweakedGPT:
       return displayNameFromFluxNodeType(FluxNodeType.GPT, isGPT4) + " (edited)";
     case FluxNodeType.System:

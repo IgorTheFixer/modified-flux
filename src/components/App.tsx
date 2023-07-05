@@ -383,7 +383,20 @@ function App() {
         if (abortController.signal.aborted) break;
 
         try {
-          const decoded = JSON.parse(DECODER.decode(chunk));
+          const decodedContent = JSON.parse(DECODER.decode(chunk));
+          console.log(decodedContent)
+          const decoded = {
+            choices: [{
+              // index: Math.floor(Math.random() * 3),
+              index: 0,
+              delta: {
+                content: Object.keys(decodedContent).toString(),
+                role: "assistant"
+              },
+              finish_reason: "null"
+            }]
+          }
+
           if (decoded.choices === undefined)
             throw new Error(
               "No choices in response. Decoded response: " + JSON.stringify(decoded)

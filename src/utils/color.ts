@@ -18,7 +18,7 @@ export function getFluxNodeTypeColor(fluxNodeType: FluxNodeType) {
     case FluxNodeType.User:
       return "#EEEEEE";
     case FluxNodeType.GPT:
-      return "#d9f3d6";
+      return "#eed6f3";
     case FluxNodeType.TweakedGPT:
       return "#f7d0a1";
     case FluxNodeType.System:
@@ -31,7 +31,7 @@ export function getFluxNodeTypeDarkColor(fluxNodeType: FluxNodeType) {
     case FluxNodeType.User:
       return "#A9ABAE";
     case FluxNodeType.GPT:
-      return "#619F83";
+      return "#D472E8";
     case FluxNodeType.TweakedGPT:
       return "#CB7937";
     case FluxNodeType.System:
