@@ -218,7 +218,7 @@ export function appendTextToFluxNodeAsGPT(
     if (!copy.data.label.endsWith(" ...") || isFirstToken) {
       copy.data.label = formatAutoLabel(copy.data.text);
     }
-
+    // console.log(copy)
     return copy;
   });
 }

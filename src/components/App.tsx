@@ -362,17 +362,19 @@ function App() {
     if (firstCompletionId === undefined) throw new Error("No first completion id!");
 
     (async () => {
-      const stream = await OpenAI(
-        "chat",
-        {
-          model,
-          n: responses,
-          temperature: temp,
-          messages: messagesFromLineage(parentNodeLineage, settings),
-        },
-        { apiKey: apiKey!, mode: "raw" }
-      );
-
+      const stream = 
+        await fetch("http://localhost:3000/").then(response => response.body?.getReader().read())
+      // await OpenAI(
+      //   "chat",
+      //   {
+      //     model,
+      //     n: responses,
+      //     temperature: temp,
+      //     messages: messagesFromLineage(parentNodeLineage, settings),
+      //   },
+      //   { apiKey: apiKey!, mode: "raw" }
+      // );
+    console.log(stream)
       const DECODER = new TextDecoder();
 
       const abortController = new AbortController();
@@ -382,7 +384,6 @@ function App() {
 
         try {
           const decoded = JSON.parse(DECODER.decode(chunk));
-
           if (decoded.choices === undefined)
             throw new Error(
               "No choices in response. Decoded response: " + JSON.stringify(decoded)
@@ -390,7 +391,6 @@ function App() {
 
           const choice: CreateChatCompletionStreamResponseChoicesInner =
             decoded.choices[0];
-
           if (choice.index === undefined)
             throw new Error(
               "No index in choice. Decoded choice: " + JSON.stringify(choice)
@@ -407,6 +407,7 @@ function App() {
           if (choice.delta?.content) {
             setNodes((newerNodes) => {
               try {
+                // console.log(choice.delta?.content)
                 return appendTextToFluxNodeAsGPT(newerNodes, {
                   id: correspondingNodeId,
                   text: choice.delta?.content ?? UNDEFINED_RESPONSE_STRING,
@@ -416,7 +417,6 @@ function App() {
                 // If the stream id does not match,
                 // it is stale and we should abort.
                 abortController.abort(e.message);
-
                 return newerNodes;
               }
             });
@@ -480,6 +480,7 @@ function App() {
         ...TOAST_CONFIG,
       })
     );
+    // console.log(newNodes)
 
     setNodes(markOnlyNodeAsSelected(newNodes, firstCompletionId!));
 
@@ -518,7 +519,7 @@ function App() {
           );
         }
       }
-
+  
       return newEdges;
     });
 
