@@ -1053,7 +1053,8 @@ function App() {
 
   return (
     <>
-      {!isValidAPIKey(apiKey) && <APIKeyModal apiKey={apiKey} setApiKey={setApiKey} />}
+      {/* No need */}
+      {/* {!isValidAPIKey(apiKey) && <APIKeyModal apiKey={apiKey} setApiKey={setApiKey} />} */}
 
       <SettingsModal
         settings={settings}
