@@ -379,6 +379,7 @@ function App() {
 
       const abortController = new AbortController();
 
+      // @ts-ignore:next-line
       for await (const chunk of yieldStream(stream, abortController)) {
         if (abortController.signal.aborted) break;
 
@@ -1139,6 +1140,7 @@ function App() {
 
                 <Box ml="20px">
                   {isAnythingLoading ? (
+                    // @ts-ignore:next-line
                     <Spinner size="sm" mt="6px" color={"#404040"} />
                   ) : (
                     <CheckCircleIcon color={"#404040"} />
