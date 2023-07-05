@@ -362,8 +362,8 @@ function App() {
     if (firstCompletionId === undefined) throw new Error("No first completion id!");
 
     (async () => {
-      const stream = 
-        await fetch("http://localhost:3000/").then(response => response.body?.getReader().read())
+        const streamResponse = await fetch("http://localhost:3000/")
+        const stream = streamResponse.body
       // await OpenAI(
       //   "chat",
       //   {
